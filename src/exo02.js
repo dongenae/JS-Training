@@ -19,6 +19,15 @@ export function hasPropertyValue(obj, value) {
   // return Object.values(obj).indexOf(value) !== -1;
   // return Object.values(obj).includes(value);
 
+  /* Bon à savoir, pour faire un for sur un dictionnaire on utilise 
+  "of" et pas "in"*/
+  // for (let v of Object.values(obj)) {
+  //  if (v === value) {
+  //    return true;
+  //  }
+  // }
+  // return false;
+
   for (let k in obj) {
     if (obj[k] === value) {
       return true;
