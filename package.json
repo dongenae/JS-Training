@@ -1,0 +1,30 @@
+{
+  "name": "formation-javascript-avance",
+  "version": "1.0.0",
+  "description": "Formation JavaScript Avancé",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/worldline/JS-Training.git"
+  },
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.16.0",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
+    "parcel": "^2.0.1"
+  },
+  "keywords": [
+    "training",
+    "formation",
+    "javascript",
+    "advanced"
+  ],
+  "browserslist": "last 5 Chrome versions, last 5 Firefox versions",
+  "jest": {}
+}
