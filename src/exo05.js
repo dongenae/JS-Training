@@ -14,6 +14,15 @@ for (let i = 0; i < paroles.length; i++) {
   });
 }
 
+/* Autre solution, en passant par une variable entre deux, 
+ moins élégante par contre... */
+//for (var i = 0; i < paroles.length; i++) {
+//  let j = i;
+//  instructions.push(function printNextLine() {
+//    return paroles[j] + ", " + paroles[j];
+//  });
+//}
+
 /* Le "let" défini un scope pour le i limité au tour de boucle 
 en cours donc chaque tour de boucle va définir une closure avec 
 la valeur actuelle du i. Tandis que le "var" définit un i global 
