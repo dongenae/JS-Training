@@ -1,7 +1,12 @@
 export function i18n(strings, ...vars) {
   // utilitaire basique d'internationalisation
-  // TODO: remplacer chaque fragment de texte avec i18n.translate
-  return;
+  // remplace chaque fragment de texte avec i18n.translate
+
+  // Entre double `` le code qui est mis dans ${} est exécuté
+  return strings.reduce(
+    (out, str, i) => `${out}${i18n.translate(str)}${vars[i] || ""}`,
+    ""
+  );
 }
 
 Object.assign(i18n, {
@@ -22,4 +27,10 @@ Object.assign(i18n, {
 const name = "Bob",
   nbMails = 3;
 
+// si on met "function`...`" tout collé alors ca transforme la
+// string en deux objets :
+// 1) un tableau contenant les string en durs
+// 2) plusieurs attributs contenant chacun un élément variable
+// En gros on obtient : strings, var1, var2, var3, ... (qu'on peut
+// rest avec "strings, ...vars" dans la signature de la méthode)
 console.log(i18n`Hello ${name}, you have ${nbMails} new mails.`);
