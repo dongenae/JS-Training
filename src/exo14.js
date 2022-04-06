@@ -2,17 +2,39 @@ export function Observable(action) {
   this.observers = [];
   action({
     emit: (value) => {
-      //TODO: notifier les observateurs de la valeur émise
+      // Notifier les observateurs de la valeur émise
+      this.observers.forEach((observer) => {
+        observer.onValue(value);
+      });
     },
     complete: () => {
-      //TODO: notifier les observateurs de la complétion
+      // Notifier les observateurs de la complétion
+      this.observers.forEach((observer) => {
+        observer.onComplete();
+      });
     }
-  })
+  });
 }
 
-Observable.prototype.subscribe = function(observer) {
-  //TODO: enregistrer l'observateur
-  return observer
+Observable.prototype.subscribe = function (observer) {
+  // Enregistrer l'observateur
+  this.observers.push(observer);
+  observer.unsubscribe = () => {
+    this.observers = this.observers.filter((o) => o !== observer);
+  };
+
+  /*
+  // Ou sans arrow function, comme on fait function() on utilise le 
+  // contexte de l'observer et non pas de l'observable
+  
+  const observableThis = this;
+  observer.unsubscribe = function () {
+    observableThis.observers = observableThis.observers.filter(
+      (o) => o !== observer
+    );
+  };
+  */
+  return observer;
 };
 
 /* exemple d'usage: */
