@@ -1,5 +1,28 @@
 export const range = (start, end) => {
-  // retourner un itérable itérant entre les deux bornes numériques
+  return {
+    [Symbol.iterator]: function () {
+      let currentValue = start;
+      return {
+        next() {
+          return {
+            done: currentValue > end,
+            value: currentValue++
+          };
+        }
+      };
+    }
+  };
+};
+
+/* Méthode avec une fonction* yield (plus concise mais peut être un peu 
+moins claire quand on maitrise pas) */
+export const range2 = (start, end) => {
+  return {
+    [Symbol.iterator]: function* () {
+      let currentValue = start;
+      while (currentValue <= end) yield currentValue++;
+    }
+  };
 };
 
 // exemple d'utilisation
